@@ -36,6 +36,7 @@ export default function BeforeAfter() {
               src="/images/after-kitchen.png"
               alt="Cuisine après le revêtement"
               fill
+              sizes="(max-width: 768px) 100vw, 1200px"
               className="select-none object-cover"
               priority
             />
@@ -51,6 +52,7 @@ export default function BeforeAfter() {
                 src="/images/before-kitchen.png"
                 alt="Cuisine avant le revêtement"
                 fill
+                sizes="(max-width: 768px) 100vw, 1200px"
                 className="select-none object-cover"
                 priority
               />
