@@ -8,12 +8,13 @@ export default function Hero() {
         alt="Modern kitchen transformation by LW New Design"
         fill
         priority
-        className="object-cover"
+        className="object-cover object-center"
+        
       />
 
-      <div className="absolute inset-0 bg-black/30" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/15" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/25" />
+      <div className="absolute inset-0 bg-black/15" />
+<div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
+<div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/15" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-28 lg:px-10">
         <div className="max-w-5xl">
