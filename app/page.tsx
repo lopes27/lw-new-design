@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import BeforeAfter from "@/components/BeforeAfter";
+import Resurface from "@/components/Resurface";
 import Projects from "@/components/Projects";
 import Process from "@/components/Process";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -13,8 +14,9 @@ export default function Home() {
     <main className="min-h-screen bg-white text-neutral-950">
       <Header />
       <Hero />
-      <Services />
       <BeforeAfter />
+      <Resurface />
+      <Services />
       <Projects />
       <WhyChooseUs />
       <Process />

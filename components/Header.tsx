@@ -1,4 +1,4 @@
-export default function Header() {
+ export default function Header() {
   return (
     <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-black/25 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
@@ -13,12 +13,12 @@ export default function Header() {
         </a>
 
         <nav className="hidden items-center gap-9 text-sm text-white/70 md:flex">
-          <a href="#services" className="transition hover:text-white">
-            Services
-          </a>
-
           <a href="#before-after" className="transition hover:text-white">
             Avant / Après
+          </a>
+
+          <a href="#services" className="transition hover:text-white">
+            Services
           </a>
 
           <a href="#projects" className="transition hover:text-white">

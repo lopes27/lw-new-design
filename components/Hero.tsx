@@ -22,14 +22,13 @@ export default function Hero() {
           </p>
 
           <h1 className="text-5xl font-medium leading-[0.92] tracking-[-0.06em] text-white sm:text-6xl md:text-7xl lg:text-8xl">
-            Transformez votre cuisine.
-            <span className="block text-white/60">Sans rénovation complète.</span>
-          </h1>
+  Une nouvelle cuisine.
+  <span className="block text-white/60">Sans tout remplacer.</span>
+</h1>
 
           <p className="mt-8 max-w-2xl text-base leading-8 text-white/78 md:text-lg">
-  Nous transformons les cuisines, les armoires et les surfaces avec des
-  revêtements haut de gamme, une finition précise et beaucoup moins de
-  complications qu’une rénovation traditionnelle.
+  Revêtements architecturaux haut de gamme pour cuisines, armoires et
+  surfaces intérieures à Montréal et partout au Québec.
 </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -44,7 +43,7 @@ export default function Hero() {
               href="#projects"
               className="inline-flex justify-center rounded-full border border-white/35 px-7 py-4 text-sm font-semibold text-white transition hover:bg-white hover:text-black"
             >
-              Voir les projets
+              Voir les transformations
             </a>
           </div>
         </div>
