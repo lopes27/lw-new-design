@@ -1,99 +1,87 @@
-"use client";
+ import Image from "next/image";
 
-import Image from "next/image";
-import { useState } from "react";
+const benefits = [
+  {
+    number: "01",
+    title: "Sans démolition majeure",
+  },
+  {
+    number: "02",
+    title: "Installation plus rapide",
+  },
+  {
+    number: "03",
+    title: "Budget mieux contrôlé",
+  },
+  {
+    number: "04",
+    title: "Finition personnalisée",
+  },
+];
 
-export default function BeforeAfter() {
-  const [position, setPosition] = useState(50);
-
+export default function Resurface() {
   return (
-    <section
-      id="before-after"
-      className="bg-white px-6 py-24 lg:px-10 lg:py-32"
-    >
+    <section className="bg-neutral-950 px-4 py-20 text-white sm:px-6 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
-            Avant / Après
-          </p>
+        <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 lg:grid lg:grid-cols-[1.15fr_0.85fr]">
+          {/* Imagem */}
+          <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[610px]">
+            <Image
+              src="/images/resurfacing-detail.png"
+              alt="Application professionnelle d’un revêtement architectural sur une porte d’armoire"
+              fill
+              sizes="(max-width: 1024px) 100vw, 58vw"
+              className="object-cover object-center"
+            />
 
-          <div>
-            <h2 className="max-w-4xl text-4xl font-medium leading-tight tracking-[-0.05em] text-neutral-950 md:text-6xl">
-              La même cuisine. Une toute nouvelle impression.
+            <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+
+            <div className="absolute bottom-6 left-6 rounded-full border border-white/20 bg-black/40 px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-white/80 backdrop-blur-md">
+              Précision et savoir-faire
+            </div>
+          </div>
+
+          {/* Conteúdo */}
+          <div className="flex flex-col justify-center px-7 py-12 sm:px-10 lg:px-12 lg:py-14 xl:px-14">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/45">
+              Resurfaçage architectural
+            </p>
+
+            <h2 className="mt-6 max-w-xl text-4xl font-medium leading-[1.03] tracking-[-0.05em] sm:text-5xl lg:text-[3.35rem]">
+              Pourquoi tout remplacer quand la structure est encore bonne?
             </h2>
 
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-600">
-              Découvrez comment une cuisine peut être modernisée sans remplacer
-              toutes les armoires ni passer par une rénovation complète.
+            <p className="mt-6 max-w-xl text-base leading-7 text-white/60">
+              Le resurfaçage architectural transforme vos armoires et surfaces
+              existantes avec des finis haut de gamme, sans les délais, les
+              coûts et les contraintes d’une rénovation complète.
             </p>
-          </div>
-        </div>
 
-        <div className="mt-16">
-          <div className="relative mx-auto aspect-[16/9] max-w-6xl overflow-hidden rounded-[2rem] border border-neutral-200 bg-neutral-200 shadow-2xl">
-            {/* Image APRÈS embaixo */}
-            <Image
-              src="/images/after-kitchen.png"
-              alt="Cuisine après le revêtement"
-              fill
-              sizes="(max-width: 768px) 100vw, 1200px"
-              className="select-none object-cover"
-              priority
-            />
+            <div className="mt-8 border-t border-white/10">
+              {benefits.map((benefit) => (
+                <div
+                  key={benefit.number}
+                  className="grid grid-cols-[42px_1fr] items-center gap-3 border-b border-white/10 py-4"
+                >
+                  <span className="text-xs font-medium text-white/30">
+                    {benefit.number}
+                  </span>
 
-            {/* Image AVANT por cima, sendo revelada sem redimensionar */}
-            <div
-              className="absolute inset-0"
-              style={{
-                clipPath: `inset(0 ${100 - position}% 0 0)`,
-              }}
+                  <p className="text-sm font-medium text-white/85 sm:text-base">
+                    {benefit.title}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <a
+              href="#contact"
+              className="mt-8 inline-flex w-fit items-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-semibold text-neutral-950 transition duration-300 hover:-translate-y-0.5 hover:bg-neutral-200"
             >
-              <Image
-                src="/images/before-kitchen.png"
-                alt="Cuisine avant le revêtement"
-                fill
-                sizes="(max-width: 768px) 100vw, 1200px"
-                className="select-none object-cover"
-                priority
-              />
-            </div>
-
-            <div className="absolute left-6 top-6 rounded-full bg-black/75 px-5 py-2 text-sm font-semibold text-white backdrop-blur">
-              Avant
-            </div>
-
-            <div className="absolute right-6 top-6 rounded-full bg-white px-5 py-2 text-sm font-semibold text-black">
-              Après
-            </div>
-
-            {/* Linha divisória */}
-            <div
-              className="absolute top-0 h-full w-[2px] bg-white shadow-lg"
-              style={{ left: `${position}%` }}
-            />
-
-            {/* Controle do slider */}
-            <div
-              className="absolute top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white text-lg font-bold text-black shadow-2xl"
-              style={{ left: `${position}%` }}
-            >
-              ↔
-            </div>
-
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={position}
-              onChange={(event) => setPosition(Number(event.target.value))}
-              aria-label="Comparer avant et après"
-              className="absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
-            />
+              Demander une soumission
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
-
-          <p className="mt-5 text-center text-sm text-neutral-500">
-            Glissez pour comparer l’avant et l’après.
-          </p>
         </div>
       </div>
     </section>
