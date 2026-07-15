@@ -1,68 +1,157 @@
+ import Image from "next/image";
+
 const finishes = [
   {
     name: "Bois naturel",
-    description: "Une apparence chaleureuse, élégante et intemporelle.",
+    description:
+      "Des textures chaleureuses et intemporelles inspirées du chêne et du noyer.",
+    image: "/images/finishes/finish-wood.png",
+    size: "large",
   },
   {
     name: "Pierre et marbre",
-    description: "Un effet raffiné pour créer une cuisine plus luxueuse.",
+    description:
+      "L’élégance de la pierre naturelle avec une finition raffinée et contemporaine.",
+    image: "/images/finishes/finish-marble.png",
+    size: "standard",
   },
   {
-    name: "Fini mat",
-    description: "Un rendu moderne, sobre et très actuel.",
-  },
-  {
-    name: "Fini brillant",
-    description: "Une surface lumineuse avec un effet plus contemporain.",
+    name: "Fini ultra-mat",
+    description:
+      "Une surface douce, sobre et moderne avec très peu de réflexion.",
+    image: "/images/finishes/finish-matte.png",
+    size: "standard",
   },
   {
     name: "Béton architectural",
-    description: "Un style minimaliste, urbain et sophistiqué.",
+    description:
+      "Une texture minérale subtile pour une ambiance urbaine et sophistiquée.",
+    image: "/images/finishes/finish-concrete.png",
+    size: "standard",
   },
   {
-    name: "Couleurs unies",
-    description: "Des tons neutres ou audacieux selon votre projet.",
+    name: "Cachemire et greige",
+    description:
+      "Des tons neutres, chaleureux et élégants pour une cuisine intemporelle.",
+    image: "/images/finishes/finish-cashmere.png",
+    size: "standard",
+  },
+  {
+    name: "Fini haute brillance",
+    description:
+      "Une surface lumineuse aux reflets contrôlés pour un style contemporain.",
+    image: "/images/finishes/finish-glossy.png",
+    size: "large",
   },
 ];
 
 export default function Finishes() {
   return (
-    <section className="bg-white px-6 py-24 lg:px-10 lg:py-32">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
-            Finitions disponibles
-          </p>
+    <section
+      id="finishes"
+      className="overflow-hidden bg-[#f3f1ed] px-4 py-24 sm:px-6 lg:px-10 lg:py-32"
+    >
+      <div className="mx-auto max-w-[1500px]">
+        <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
+              Finitions disponibles
+            </p>
+
+            <p className="mt-5 max-w-sm text-sm leading-7 text-neutral-500">
+              Une sélection de textures et de couleurs adaptée aux espaces
+              résidentiels et commerciaux.
+            </p>
+          </div>
 
           <div>
-            <h2 className="max-w-4xl text-4xl font-medium leading-tight tracking-[-0.05em] text-neutral-950 md:text-6xl">
-              Des textures et finis pensés pour transformer votre espace.
+            <h2 className="max-w-5xl text-4xl font-medium leading-[1.03] tracking-[-0.05em] text-neutral-950 sm:text-5xl lg:text-7xl">
+              Des surfaces qui changent complètement la perception de votre
+              espace.
             </h2>
-
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-600">
-              Choisissez parmi une sélection de finis modernes pour créer une
-              cuisine plus chaleureuse, plus lumineuse ou plus contemporaine.
-            </p>
           </div>
         </div>
 
-        <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {finishes.map((finish) => (
-            <article
-              key={finish.name}
-              className="rounded-[2rem] border border-neutral-200 bg-neutral-50 p-8 transition hover:-translate-y-1 hover:bg-white hover:shadow-xl"
-            >
-              <div className="mb-10 h-40 rounded-[1.5rem] bg-[linear-gradient(135deg,#d8d1c7,#f4f0ea,#9b9185)]" />
+        <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-12 lg:gap-5">
+          {finishes.map((finish, index) => {
+            let columnClass = "lg:col-span-5";
 
-              <h3 className="text-2xl font-medium tracking-[-0.03em] text-neutral-950">
-                {finish.name}
-              </h3>
+            if (finish.size === "large") {
+              columnClass = "lg:col-span-7";
+            }
 
-              <p className="mt-4 leading-7 text-neutral-600">
-                {finish.description}
-              </p>
-            </article>
-          ))}
+            if (index === 2 || index === 3) {
+              columnClass = "lg:col-span-6";
+            }
+
+            return (
+              <article
+                key={finish.name}
+                className={`group relative min-h-[460px] overflow-hidden rounded-[2rem] bg-neutral-900 ${columnClass}`}
+              >
+                <Image
+                  src={finish.image}
+                  alt={`Finition architecturale ${finish.name}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 58vw"
+                  className="object-cover transition duration-700 ease-out group-hover:scale-[1.045]"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/5" />
+
+                <div className="absolute left-6 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/20 text-xs font-medium text-white/80 backdrop-blur-md">
+                  0{index + 1}
+                </div>
+
+                <div className="absolute inset-x-0 bottom-0 p-7 text-white sm:p-8">
+                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/55">
+                    Collection architecturale
+                  </p>
+
+                  <h3 className="mt-3 text-3xl font-medium tracking-[-0.04em] sm:text-4xl">
+                    {finish.name}
+                  </h3>
+
+                  <div className="grid transition-all duration-500 ease-out lg:grid-rows-[0fr] lg:opacity-0 lg:group-hover:grid-rows-[1fr] lg:group-hover:opacity-100">
+                    <div className="overflow-hidden">
+                      <p className="max-w-md pt-4 leading-7 text-white/70">
+                        {finish.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 flex items-center justify-between border-t border-white/20 pt-5">
+                    <span className="text-sm text-white/65">
+                      Voir la finition
+                    </span>
+
+                    <span
+                      aria-hidden="true"
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 transition duration-300 group-hover:rotate-45 group-hover:bg-white group-hover:text-black"
+                    >
+                      ↗
+                    </span>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="mt-10 flex flex-col gap-5 border-t border-neutral-300 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-2xl text-sm leading-7 text-neutral-500">
+            Les couleurs et textures peuvent varier selon l’éclairage et les
+            écrans. Des échantillons sont disponibles pour confirmer votre
+            sélection.
+          </p>
+
+          <a
+            href="#contact"
+            className="inline-flex w-fit items-center gap-3 rounded-full bg-neutral-950 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-neutral-800"
+          >
+            Voir les échantillons
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </div>
     </section>
