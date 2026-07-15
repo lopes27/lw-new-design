@@ -23,7 +23,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="overflow-hidden bg-neutral-950 px-4 py-24 text-white sm:px-6 lg:px-10 lg:py-32"
+      className="scroll-mt-24 overflow-hidden bg-neutral-950 px-4 py-20 text-white sm:px-6 lg:scroll-mt-28 lg:px-10 lg:py-24"
     >
       <div className="mx-auto max-w-[1500px]">
         <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
@@ -49,7 +49,7 @@ export default function Projects() {
               key={project.number}
               className="group min-w-[82vw] snap-center sm:min-w-[55vw] lg:min-w-0"
             >
-              <div className="relative aspect-[9/16] overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 lg:max-h-[650px]">
                 <video
                   src={project.video}
                   className="h-full w-full object-cover"

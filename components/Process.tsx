@@ -1,73 +1,94 @@
-const steps = [
+ const steps = [
   {
     number: "01",
-    title: "Consultation",
+    title: "Premier échange",
     description:
-      "Nous discutons de votre projet, de vos besoins, de votre style et des surfaces à transformer.",
+      "Vous nous présentez votre espace, vos objectifs et quelques photos du projet.",
+    detail: "Projet et besoins",
   },
   {
     number: "02",
-    title: "Sélection des finis",
+    title: "Choix de la finition",
     description:
-      "Nous vous aidons à choisir les couleurs, textures et finis qui correspondent le mieux à votre espace.",
+      "Nous vous aidons à sélectionner la couleur, la texture et le fini adaptés à votre intérieur.",
+    detail: "Couleurs et textures",
   },
   {
     number: "03",
-    title: "Préparation des surfaces",
+    title: "Préparation du projet",
     description:
-      "Les surfaces sont nettoyées et préparées avec soin pour assurer une application propre et durable.",
+      "Les surfaces sont évaluées et préparées avec soin avant le début de l’installation.",
+    detail: "Évaluation et préparation",
   },
   {
     number: "04",
     title: "Installation",
     description:
-      "Le revêtement est appliqué avec précision pour obtenir un résultat uniforme, moderne et haut de gamme.",
+      "Le revêtement est appliqué avec précision afin d’obtenir des lignes nettes et une finition uniforme.",
+    detail: "Application professionnelle",
   },
   {
     number: "05",
-    title: "Résultat final",
+    title: "Vérification finale",
     description:
-      "Vous profitez d’un espace transformé, sans démolition majeure et avec beaucoup moins de complications.",
+      "Nous vérifions les détails et le résultat final avec vous avant de terminer le projet.",
+    detail: "Contrôle de qualité",
   },
 ];
 
 export default function Process() {
   return (
-    <section className="bg-neutral-100 px-6 py-24 lg:px-10 lg:py-32">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+    <section
+      id="process"
+      className="scroll-mt-24 bg-[#f3f1ed] px-4 py-24 sm:px-6 lg:px-10 lg:py-32"
+    >
+      <div className="mx-auto grid max-w-[1500px] gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
+        <div className="lg:sticky lg:top-28 lg:h-fit">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
             Notre processus
           </p>
 
-          <div>
-            <h2 className="max-w-4xl text-4xl font-medium leading-tight tracking-[-0.05em] text-neutral-950 md:text-6xl">
-              Une transformation simple, propre et bien organisée.
-            </h2>
+          <h2 className="mt-6 max-w-xl text-4xl font-medium leading-[1.03] tracking-[-0.05em] text-neutral-950 sm:text-5xl lg:text-6xl">
+            Une transformation simple, du premier échange à la finition.
+          </h2>
 
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-600">
-              De la première consultation jusqu’à l’installation finale, chaque
-              étape est pensée pour rendre votre projet clair, efficace et sans
-              stress inutile.
-            </p>
-          </div>
+          <p className="mt-7 max-w-md text-base leading-8 text-neutral-600">
+            Une approche claire et personnalisée pour transformer vos surfaces
+            existantes sans les complications d’une rénovation complète.
+          </p>
+
+          <a
+            href="#contact"
+            className="mt-9 inline-flex items-center gap-3 rounded-full bg-neutral-950 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-neutral-800"
+          >
+            Démarrer mon projet
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
 
-        <div className="mt-20">
+        <div className="border-t border-neutral-300">
           {steps.map((step) => (
             <article
               key={step.number}
-              className="grid gap-6 border-t border-neutral-300 py-9 md:grid-cols-[120px_1fr_1fr] md:items-start"
+              className="group grid gap-5 border-b border-neutral-300 py-8 sm:grid-cols-[60px_1fr] lg:grid-cols-[70px_1fr_auto] lg:items-start lg:py-10"
             >
-              <span className="text-sm text-neutral-400">{step.number}</span>
+              <span className="text-sm font-medium text-neutral-400">
+                {step.number}
+              </span>
 
-              <h3 className="text-2xl font-medium tracking-[-0.03em] text-neutral-950 md:text-4xl">
-                {step.title}
-              </h3>
+              <div>
+                <h3 className="text-2xl font-medium tracking-[-0.03em] text-neutral-950 sm:text-3xl">
+                  {step.title}
+                </h3>
 
-              <p className="max-w-md leading-7 text-neutral-600">
-                {step.description}
-              </p>
+                <p className="mt-4 max-w-xl leading-7 text-neutral-600">
+                  {step.description}
+                </p>
+              </div>
+
+              <span className="hidden rounded-full border border-neutral-300 px-4 py-2 text-xs text-neutral-500 lg:block">
+                {step.detail}
+              </span>
             </article>
           ))}
         </div>
