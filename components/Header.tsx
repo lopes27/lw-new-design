@@ -3,13 +3,13 @@
     <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-black/25 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
         <a href="#" className="group flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-xs font-semibold text-white">
-            LW
-          </span>
+         <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-xs font-semibold text-white">
+  MS
+</span>
 
-          <span className="text-sm font-semibold uppercase tracking-[0.28em] text-white">
-            New Design
-          </span>
+<span className="text-sm font-semibold uppercase tracking-[0.24em] text-white">
+  Maison Surface
+</span>
         </a>
 
         <nav className="hidden items-center gap-9 text-sm text-white/70 md:flex">

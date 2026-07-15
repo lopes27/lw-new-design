@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="relative flex min-h-screen items-center overflow-hidden bg-neutral-950">
       <Image
         src="/images/hero-kitchen-luxury.png"
-        alt="Modern kitchen transformation by LW New Design"
+        alt="Cuisine transformée par Maison Surface"
         fill
         priority
         className="object-cover object-center"

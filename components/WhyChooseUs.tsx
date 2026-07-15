@@ -36,9 +36,9 @@ export default function WhyChooseUs() {
             </h2>
 
             <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-600">
-              LW New Design aide les propriétaires et les entreprises à
-              transformer leurs espaces avec une solution plus simple, plus
-              propre et plus efficace.
+              Maison Surface aide les propriétaires et les entreprises à
+transformer leurs espaces avec une solution plus simple, plus
+propre et plus efficace.
             </p>
           </div>
         </div>
