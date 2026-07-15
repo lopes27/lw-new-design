@@ -1,64 +1,108 @@
-const reasons = [
+ import Image from "next/image";
+
+const advantages = [
   {
-    title: "Sans démolition majeure",
+    number: "01",
+    title: "Précision dans chaque détail",
     description:
-      "Modernisez votre cuisine sans passer par une rénovation lourde, coûteuse et pleine de poussière.",
+      "Des bordures nettes, des surfaces uniformes et une installation réalisée avec soin.",
   },
   {
-    title: "Installation rapide",
-    description:
-      "La plupart des projets peuvent être réalisés beaucoup plus rapidement qu’une rénovation traditionnelle.",
-  },
-  {
+    number: "02",
     title: "Finitions haut de gamme",
     description:
-      "Nous utilisons des revêtements modernes pour créer une apparence propre, durable et raffinée.",
+      "Une sélection de textures et de couleurs conçue pour créer un résultat élégant et durable.",
   },
   {
-    title: "Solution plus abordable",
+    number: "03",
+    title: "Transformation plus simple",
     description:
-      "Obtenez un nouveau style pour votre cuisine sans remplacer complètement les armoires existantes.",
+      "Modernisez vos surfaces existantes sans les contraintes d’une rénovation complète.",
+  },
+  {
+    number: "04",
+    title: "Service local et personnalisé",
+    description:
+      "Un accompagnement adapté à votre espace, à votre style et aux besoins de votre projet.",
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-white px-6 py-24 lg:px-10 lg:py-32">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
-            Pourquoi nous choisir
-          </p>
+    <section className="bg-[#f3f1ed] px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
+      <div className="mx-auto max-w-[1500px]">
+        <div className="grid overflow-hidden rounded-[2rem] border border-neutral-300 bg-white lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="relative min-h-[520px] overflow-hidden lg:min-h-[760px]">
+            <Image
+              src="/images/why-choose-detail.png"
+              alt="Détail précis d’une finition architecturale Maison Surface"
+              fill
+              sizes="(max-width: 1024px) 100vw, 53vw"
+              className="object-cover object-center"
+            />
 
-          <div>
-            <h2 className="max-w-4xl text-4xl font-medium leading-tight tracking-[-0.05em] text-neutral-950 md:text-6xl">
-              Une alternative élégante à la rénovation complète.
+            <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/5" />
+
+            <div className="absolute bottom-6 left-6 rounded-full border border-white/25 bg-black/30 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-white backdrop-blur-md sm:bottom-8 sm:left-8">
+              Qualité et précision
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-center px-7 py-14 sm:px-10 lg:px-14 lg:py-20 xl:px-16">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
+              Pourquoi Maison Surface
+            </p>
+
+            <h2 className="mt-6 max-w-xl text-4xl font-medium leading-[1.03] tracking-[-0.05em] text-neutral-950 sm:text-5xl lg:text-6xl">
+              Le détail fait toute la différence.
             </h2>
 
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-600">
-              Maison Surface aide les propriétaires et les entreprises à
-transformer leurs espaces avec une solution plus simple, plus
-propre et plus efficace.
+            <p className="mt-7 max-w-xl text-base leading-8 text-neutral-600 lg:text-lg">
+              Nous transformons cuisines, armoires et surfaces avec une approche
+              précise, propre et personnalisée. Chaque projet est conçu pour
+              offrir un résultat élégant sans les contraintes d’une rénovation
+              complète.
             </p>
-          </div>
-        </div>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-[2rem] bg-neutral-300 md:grid-cols-2">
-          {reasons.map((reason, index) => (
-            <article key={reason.title} className="bg-neutral-100 p-8 md:p-10">
-              <span className="text-sm text-neutral-400">
-                0{index + 1}
-              </span>
+            <div className="mt-9 border-t border-neutral-200">
+              {advantages.map((advantage) => (
+                <article
+                  key={advantage.number}
+                  className="grid grid-cols-[44px_1fr] gap-4 border-b border-neutral-200 py-5"
+                >
+                  <span className="pt-1 text-xs font-medium text-neutral-400">
+                    {advantage.number}
+                  </span>
 
-              <h3 className="mt-16 text-2xl font-medium tracking-[-0.03em] text-neutral-950">
-                {reason.title}
-              </h3>
+                  <div>
+                    <h3 className="font-medium text-neutral-950">
+                      {advantage.title}
+                    </h3>
 
-              <p className="mt-5 max-w-md leading-7 text-neutral-600">
-                {reason.description}
+                    <p className="mt-2 text-sm leading-6 text-neutral-500">
+                      {advantage.description}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-9 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+              <a
+                href="#contact"
+                className="inline-flex w-fit items-center gap-3 rounded-full bg-neutral-950 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-neutral-800"
+              >
+                Demander une soumission
+                <span aria-hidden="true">↗</span>
+              </a>
+
+              <p className="text-xs uppercase leading-6 tracking-[0.16em] text-neutral-400">
+                Montréal · Laval
+                <br />
+                Rive-Nord · Rive-Sud
               </p>
-            </article>
-          ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
