@@ -1,35 +1,21 @@
- import Image from "next/image";
-
-const projects = [
+ const transformations = [
   {
     number: "01",
-    title: "Cuisine contemporaine",
-    category: "Revêtement d’armoires",
-    location: "Laval, Québec",
-    description:
-      "Une cuisine résidentielle transformée avec une finition cachemire ultra-mate, douce et intemporelle.",
-    image: "/images/projects/project-contemporary-kitchen.png",
-    className: "lg:col-span-12 lg:min-h-[700px]",
+    title: "Transformation de cuisine",
+    category: "Armoires de cuisine",
+    video: "/videos/transformation-kitchen-01.mp4",
   },
   {
     number: "02",
-    title: "Fini bois naturel",
-    category: "Détail architectural",
-    location: "Montréal, Québec",
-    description:
-      "Un fini bois chaleureux mettant en valeur la précision des détails et la qualité de l’installation.",
-    image: "/images/projects/project-natural-wood.png",
-    className: "lg:col-span-5 lg:min-h-[560px]",
+    title: "Nouvelle finition",
+    category: "Resurfaçage résidentiel",
+    video: "/videos/transformation-kitchen-02.mp4",
   },
   {
     number: "03",
-    title: "Espace commercial",
-    category: "Resurfaçage commercial",
-    location: "Rive-Nord, Québec",
-    description:
-      "Une surface commerciale modernisée avec des matériaux durables et une finition professionnelle.",
-    image: "/images/projects/project-commercial-space.png",
-    className: "lg:col-span-7 lg:min-h-[560px]",
+    title: "Projet commercial",
+    category: "Surface commerciale",
+    video: "/videos/transformation-commercial-01.mp4",
   },
 ];
 
@@ -40,94 +26,78 @@ export default function Projects() {
       className="overflow-hidden bg-neutral-950 px-4 py-24 text-white sm:px-6 lg:px-10 lg:py-32"
     >
       <div className="mx-auto max-w-[1500px]">
-        <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/45">
-              Projets sélectionnés
+              Transformations réelles
             </p>
 
-            <p className="mt-5 max-w-sm text-sm leading-7 text-white/45">
-              Des transformations résidentielles et commerciales réalisées avec
-              précision, soin et attention aux détails.
+            <p className="mt-5 max-w-md text-sm leading-7 text-white/45">
+              Découvrez quelques projets avant et après réalisés par Maison
+              Surface.
             </p>
           </div>
 
           <h2 className="max-w-5xl text-4xl font-medium leading-[1.03] tracking-[-0.05em] sm:text-5xl lg:text-7xl">
-            Une transformation se juge dans les détails.
+            Voyez la transformation en mouvement.
           </h2>
         </div>
 
-        <div className="mt-16 grid gap-5 lg:grid-cols-12">
-          {projects.map((project) => (
+        <div className="mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-5 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
+          {transformations.map((project, index) => (
             <article
               key={project.number}
-              className={`group relative min-h-[500px] overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 ${project.className}`}
+              className="group min-w-[82vw] snap-center sm:min-w-[55vw] lg:min-w-0"
             >
-              <Image
-                src={project.image}
-                alt={`${project.title}, projet Maison Surface`}
-                fill
-                sizes={
-                  project.number === "01"
-                    ? "100vw"
-                    : "(max-width: 1024px) 100vw, 58vw"
-                }
-                className="object-cover transition duration-1000 ease-out group-hover:scale-[1.035]"
-              />
+              <div className="relative aspect-[9/16] overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900">
+                <video
+                  src={project.video}
+                  className="h-full w-full object-cover"
+                  muted={index === 0}
+                  autoPlay={index === 0}
+                  loop={index === 0}
+                  playsInline
+                  controls
+                  preload="metadata"
+                >
+                  Votre navigateur ne prend pas en charge la lecture vidéo.
+                </video>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/15 to-black/5" />
-
-              <div className="absolute left-6 top-6 flex items-center gap-3 sm:left-8 sm:top-8">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-black/20 text-xs font-medium text-white backdrop-blur-md">
-                  {project.number}
-                </span>
-
-                <span className="rounded-full border border-white/20 bg-black/20 px-4 py-2 text-xs text-white/75 backdrop-blur-md">
-                  {project.category}
-                </span>
-              </div>
-
-              <div className="absolute inset-x-0 bottom-0 p-7 sm:p-9 lg:p-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/50">
-                  {project.location}
-                </p>
-
-                <h3 className="mt-4 max-w-3xl text-3xl font-medium tracking-[-0.04em] sm:text-5xl">
-                  {project.title}
-                </h3>
-
-                <p className="mt-5 max-w-xl leading-7 text-white/65">
-                  {project.description}
-                </p>
-
-                <div className="mt-7 flex items-center justify-between border-t border-white/20 pt-6">
-                  <span className="text-sm font-medium text-white/70">
-                    Voir le projet
+                <div className="pointer-events-none absolute left-5 top-5 flex items-center gap-2">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/35 text-xs font-medium backdrop-blur-md">
+                    {project.number}
                   </span>
 
-                  <span
-                    aria-hidden="true"
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 transition duration-300 group-hover:rotate-45 group-hover:bg-white group-hover:text-black"
-                  >
-                    ↗
+                  <span className="rounded-full border border-white/20 bg-black/35 px-4 py-2 text-xs text-white/80 backdrop-blur-md">
+                    Avant / Après
                   </span>
                 </div>
+              </div>
+
+              <div className="px-2 pt-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/40">
+                  {project.category}
+                </p>
+
+                <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em]">
+                  {project.title}
+                </h3>
               </div>
             </article>
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col gap-5 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-xl text-sm leading-7 text-white/40">
-            Chaque projet est adapté à l’espace existant, au style recherché et
-            aux besoins du client.
+            Chaque projet est réalisé selon l’espace existant, le fini choisi et
+            les besoins du client.
           </p>
 
           <a
             href="#contact"
             className="inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 transition hover:-translate-y-0.5 hover:bg-neutral-200"
           >
-            Discuter de votre projet
+            Transformer mon espace
             <span aria-hidden="true">↗</span>
           </a>
         </div>
