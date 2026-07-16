@@ -28,7 +28,7 @@ const benefits = [
 
 export default function Services() {
   return (
-    <section id="services" className="bg-neutral-100 px-6 py-24 lg:px-10">
+    <section id="services" className="ms-bg-cream border-t border-black/5 px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">

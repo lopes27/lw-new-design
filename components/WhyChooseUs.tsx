@@ -29,7 +29,7 @@ const advantages = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-[#f3f1ed] px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
+    <section className="ms-bg-cashmere px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
       <div className="mx-auto max-w-[1500px]">
         <div className="grid overflow-hidden rounded-[2rem] border border-neutral-300 bg-white lg:grid-cols-[1.05fr_0.95fr]">
           <div className="relative min-h-[520px] overflow-hidden lg:min-h-[760px]">

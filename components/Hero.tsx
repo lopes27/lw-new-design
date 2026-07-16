@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-neutral-950">
+    <section className="relative flex min-h-screen items-center overflow-hidden ms-bg-dark">
       <Image
         src="/images/hero-kitchen-luxury.png"
         alt="Cuisine transformée par Maison Surface"

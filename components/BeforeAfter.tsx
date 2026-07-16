@@ -9,7 +9,7 @@ export default function BeforeAfter() {
   return (
     <section
       id="before-after"
-      className="scroll-mt-24 bg-white px-6 py-24 lg:px-10 lg:py-32"
+       className="ms-bg-cream px-4 py-24 sm:px-6 lg:px-10 lg:py-32"
     >
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
