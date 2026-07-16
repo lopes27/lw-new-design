@@ -72,16 +72,16 @@ body {
       rgba(181, 139, 101, 0.18),
       transparent 24%
     ),
-    linear-gradient(
-      180deg,
-      #faf7f2 0%,
-      #f3e9de 18%,
-      #e5d3c1 38%,
-      #d5bda5 52%,
-      #e5d3c3 68%,
-      #f1e6db 84%,
-      #faf6f0 100%
-    );
+   linear-gradient(
+  180deg,
+  #fbf8f4 0%,
+  #f5ede4 18%,
+  #eadacb 36%,
+  #d8bea5 52%,
+  #e8d8c9 68%,
+  #f4ebe2 84%,
+  #fbf8f4 100%
+);
 }
 
 /*

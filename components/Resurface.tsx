@@ -11,7 +11,7 @@ export default function Resurface() {
   return (
     <section className="bg-black px-6 py-24 text-white lg:px-10">
       <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 min-h-[520px]">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 min-h-[650px]">
           <Image
             src="/images/why-choose-detail.png"
             alt="Détail d’un resurfaçage architectural de haute qualité"
