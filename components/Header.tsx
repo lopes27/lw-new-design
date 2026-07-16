@@ -12,7 +12,7 @@
 </span>
         </a>
 
-        <nav className="hidden items-center gap-9 text-sm text-white/70 md:flex">
+        <nav className="hidden items-center gap-9 text-sm text-white/80 md:flex">
           <a href="#before-after" className="transition hover:text-white">
             Avant / Après
           </a>
@@ -32,7 +32,7 @@
 
         <a
           href="#contact"
-          className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-neutral-200"
+          className="rounded-full bg-white px-4 py-3 text-xs font-semibold text-neutral-950"
         >
           Soumission gratuite
         </a>

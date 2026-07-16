@@ -18,7 +18,7 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-28 lg:px-10">
         <div className="max-w-5xl">
-          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
+          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-white/80">
             Revêtement de cuisine haut de gamme · Montréal & Québec
           </p>
 
