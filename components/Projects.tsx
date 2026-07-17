@@ -1,4 +1,6 @@
- const transformations = [
+import Reveal from "@/components/Reveal";
+
+const transformations = [
   {
     number: "01",
     title: "Transformation de cuisine",
@@ -26,6 +28,7 @@ export default function Projects() {
       className="scroll-mt-24 overflow-hidden bg-neutral-950 px-4 py-20 text-white sm:px-6 lg:scroll-mt-28 lg:px-10 lg:py-24"
     >
       <div className="mx-auto max-w-[1500px]">
+        <Reveal>
         <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/45">
@@ -43,12 +46,16 @@ export default function Projects() {
           </h2>
         </div>
 
+        </Reveal>
+
         <div className="mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-5 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
           {transformations.map((project, index) => (
-            <article
+            <Reveal
               key={project.number}
+              delay={index * 120}
               className="group min-w-[82vw] snap-center sm:min-w-[55vw] lg:min-w-0"
             >
+            <article className="h-full">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 lg:max-h-[650px]">
                 <video
                   src={project.video}
@@ -58,7 +65,8 @@ export default function Projects() {
                   loop={index === 0}
                   playsInline
                   controls
-                  preload="metadata"
+                  aria-label={`Vidéo avant/après — ${project.title}`}
+                  preload={index === 0 ? "metadata" : "none"}
                 >
                   Votre navigateur ne prend pas en charge la lecture vidéo.
                 </video>
@@ -84,6 +92,7 @@ export default function Projects() {
                 </h3>
               </div>
             </article>
+          </Reveal>
           ))}
         </div>
 

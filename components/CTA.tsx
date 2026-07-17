@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
+import Reveal from "@/components/Reveal";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
 
@@ -56,6 +57,7 @@ export default function CTA() {
     >
       <div className="mx-auto max-w-[1500px]">
         <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+          <Reveal>
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/45">
               Demande de soumission
@@ -82,6 +84,8 @@ export default function CTA() {
               </p>
             </div>
           </div>
+
+          </Reveal>
 
           <div className="rounded-[2rem] border border-white/10 bg-white p-7 text-neutral-950 sm:p-10 lg:p-12">
             {status === "success" ? (

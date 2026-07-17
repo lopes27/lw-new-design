@@ -57,7 +57,7 @@ export default function Footer() {
             </p>
 
             <nav className="mt-6 flex flex-col gap-4 text-sm text-white/60">
-              <a href="#avant-apres" className="transition hover:text-white">
+              <a href="#before-after" className="transition hover:text-white">
                 Avant / Après
               </a>
 

@@ -1,27 +1,28 @@
  @import "tailwindcss";
 
 :root {
-  --background: #f6f1ea;
-  --foreground: #191713;
+  --background: #f6f4ef;
+  --foreground: #171816;
 
-  --ms-ink: #171410;
-  --ms-ink-soft: #241f1a;
-  --ms-ivory: #f8f4ee;
-  --ms-cream: #efe4d7;
-  --ms-stone: #dcc8b2;
-  --ms-cashmere: #c8aa8c;
-  --ms-bronze: #9f704e;
+  --ms-ink: #151714;
+  --ms-ink-soft: #22241f;
+  --ms-paper: #f6f4ef;
+  --ms-stone: #e7e2da;
+  --ms-warm-gray: #d5cfc5;
+  --ms-bronze: #9a6b45;
+  --ms-olive: #60675a;
+  --ms-ivory: #faf9f6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 92px;
   background: var(--ms-ivory);
 }
 
@@ -29,160 +30,294 @@ body {
   margin: 0;
   background: var(--ms-ivory);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ms-bronze);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 ::selection {
   background: var(--ms-bronze);
-  color: white;
+  color: #ffffff;
 }
 
-/*
-  Fundo contínuo de toda a página.
-  O degradê acompanha o comprimento do site.
-*/
+/* ============================================================
+   Fundo geral
+   ============================================================ */
+
 .site-shell {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-
   background:
     radial-gradient(
-      circle at 88% 8%,
-      rgba(175, 128, 89, 0.23),
-      transparent 20%
-    ),
-    radial-gradient(
-      circle at 8% 28%,
-      rgba(127, 91, 63, 0.13),
-      transparent 22%
-    ),
-    radial-gradient(
-      circle at 92% 52%,
-      rgba(188, 148, 109, 0.2),
+      circle at 90% 12%,
+      rgba(154, 107, 69, 0.07),
       transparent 24%
     ),
     radial-gradient(
-      circle at 12% 76%,
-      rgba(131, 91, 63, 0.12),
-      transparent 22%
+      circle at 8% 58%,
+      rgba(96, 103, 90, 0.05),
+      transparent 28%
     ),
-    radial-gradient(
-      circle at 86% 94%,
-      rgba(181, 139, 101, 0.18),
-      transparent 24%
-    ),
-   linear-gradient(
-  180deg,
-  #fbf8f4 0%,
-  #f5ede4 18%,
-  #eadacb 36%,
-  #d8bea5 52%,
-  #e8d8c9 68%,
-  #f4ebe2 84%,
-  #fbf8f4 100%
-);
+    linear-gradient(
+      180deg,
+      #faf9f6 0%,
+      #f5f2ed 22%,
+      #ece8e1 46%,
+      #f3f0eb 70%,
+      #faf9f6 100%
+    );
 }
 
-/*
-  Faz as seções claras deixarem o mesmo degradê aparecer.
-  O !important vence os antigos bg-white, bg-[#f3f1ed],
-  ms-bg-cream, ms-bg-cashmere etc.
-*/
+/* Seções claras deixam o fundo geral aparecer */
 .site-flow > section:not(#projects):not(#contact) {
   background: transparent !important;
 }
 
-/*
-  Uma divisão quase invisível entre as seções claras.
-  Mantém a página organizada sem criar blocos separados.
-*/
-.site-flow > section:not(#projects):not(#contact) + section:not(#projects):not(#contact) {
-  border-top-color: rgba(73, 55, 39, 0.07);
+/* Separadores discretos somente entre seções claras */
+.site-flow
+  > section:not(#projects):not(#contact)
+  + section:not(#projects):not(#contact) {
+  border-top: 1px solid rgba(73, 55, 39, 0.07);
 }
 
-/*
-  Área de vídeos.
-  Continua escura porque os textos dessa seção são brancos,
-  mas recebe tons marrons da mesma identidade visual.
-*/
+/* ============================================================
+   Seções escuras
+   ============================================================ */
+
 #projects {
   background:
     radial-gradient(
-      circle at 85% 5%,
-      rgba(164, 112, 75, 0.22),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 10% 90%,
-      rgba(112, 79, 56, 0.18),
+      circle at 82% 8%,
+      rgba(154, 107, 69, 0.13),
       transparent 30%
     ),
     linear-gradient(
       180deg,
-      rgba(29, 25, 21, 0.99),
-      rgba(19, 17, 14, 0.99)
+      #1d1f1b 0%,
+      #131512 100%
     ) !important;
-
   box-shadow:
-    0 -30px 80px rgba(46, 34, 25, 0.08),
-    0 30px 80px rgba(46, 34, 25, 0.08);
+    0 -24px 70px rgba(20, 22, 18, 0.07),
+    0 24px 70px rgba(20, 22, 18, 0.07);
 }
 
-/*
-  Formulário final.
-  Repete o fundo escuro dos vídeos para fechar o site
-  com a mesma identidade.
-*/
 #contact {
   background:
     radial-gradient(
-      circle at 15% 5%,
-      rgba(164, 112, 75, 0.2),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 90% 90%,
-      rgba(112, 79, 56, 0.16),
+      circle at 12% 5%,
+      rgba(154, 107, 69, 0.12),
       transparent 30%
     ),
     linear-gradient(
       180deg,
-      rgba(27, 23, 19, 0.99),
-      rgba(17, 15, 12, 1)
+      #1b1d19 0%,
+      #111310 100%
     ) !important;
 }
 
-/*
-  Rodapé ligado visualmente ao formulário.
-*/
 .site-flow footer {
   background: #110f0d !important;
   border-top-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-/*
-  Classes antigas permanecem válidas, mas passam a seguir
-  a nova identidade caso sejam utilizadas em outro lugar.
-*/
+/* ============================================================
+   Classes antigas de fundo
+   ============================================================ */
+
 .ms-bg-dark {
   background:
     radial-gradient(
       circle at 15% 0%,
-      rgba(164, 112, 75, 0.18),
-      transparent 34%
+      rgba(154, 107, 69, 0.12),
+      transparent 32%
     ),
     var(--ms-ink);
 }
 
-.ms-bg-cream {
-  background: transparent;
-}
-
-.ms-bg-stone {
-  background: transparent;
-}
-
+.ms-bg-cream,
+.ms-bg-stone,
 .ms-bg-cashmere {
   background: transparent;
+}
+
+/* ============================================================
+   Cores de texto
+   ============================================================ */
+
+/*
+  Aplica texto escuro somente nas seções claras comuns.
+  Services e Finishes ficam fora porque possuem textos sobre imagens.
+*/
+.site-flow
+  > section:not(#projects):not(#contact):not(#services):not(#finishes)
+  p {
+  color: rgba(23, 24, 22, 0.7);
+}
+
+.site-flow
+  > section:not(#projects):not(#contact):not(#services):not(#finishes)
+  h2,
+.site-flow
+  > section:not(#projects):not(#contact):not(#services):not(#finishes)
+  h3 {
+  color: #171816;
+}
+
+/*
+  Textos sobre imagens nos serviços.
+  O !important vence as regras utilitárias conflitantes.
+*/
+#services .relative h3,
+#services .relative p,
+#services .relative span {
+  color: #ffffff !important;
+}
+
+#services .relative p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+#services .relative > div > p:first-child {
+  color: rgba(255, 255, 255, 0.52) !important;
+}
+
+/*
+  Textos sobre imagens nos cards de acabamentos.
+  Não altera o título principal externo da seção.
+*/
+#finishes article h3,
+#finishes article p,
+#finishes article span,
+#finishes article a {
+  color: #ffffff !important;
+}
+
+#finishes article p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* ============================================================
+   Animações e microinterações
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.ms-fade-up {
+  opacity: 0;
+  transform: translateY(26px);
+  animation: ms-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes ms-fade-up {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ms-hero-image {
+  animation: ms-hero-zoom 2.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ms-hero-zoom {
+  from {
+    transform: scale(1.08);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.ms-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+.ms-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: ms-marquee 30s linear infinite;
+}
+
+.ms-marquee:hover .ms-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes ms-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes serviceReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   Acessibilidade: reduzir movimento
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal,
+  .ms-fade-up {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+
+  .ms-hero-image,
+  .ms-marquee-track {
+    animation: none;
+  }
 }

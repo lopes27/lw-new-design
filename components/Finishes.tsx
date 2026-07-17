@@ -1,4 +1,5 @@
  import Image from "next/image";
+import Reveal from "@/components/Reveal";
 
 const finishes = [
   {
@@ -52,6 +53,7 @@ export default function Finishes() {
       className="overflow-hidden bg-[#f3f1ed] px-4 py-24 sm:px-6 lg:px-10 lg:py-32"
     >
       <div className="mx-auto max-w-[1500px]">
+        <Reveal>
         <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">
@@ -72,6 +74,8 @@ export default function Finishes() {
           </div>
         </div>
 
+        </Reveal>
+
         <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-12 lg:gap-5">
           {finishes.map((finish, index) => {
             let columnClass = "lg:col-span-5";
@@ -85,10 +89,12 @@ export default function Finishes() {
             }
 
             return (
-              <article
+              <Reveal
                 key={finish.name}
-                className={`group relative min-h-[460px] overflow-hidden rounded-[2rem] bg-neutral-900 ${columnClass}`}
+                delay={(index % 2) * 110}
+                className={columnClass}
               >
+              <article className="group relative h-full min-h-[460px] overflow-hidden rounded-[2rem] bg-neutral-900">
                 <Image
                   src={finish.image}
                   alt={`Finition architecturale ${finish.name}`}
@@ -134,6 +140,7 @@ export default function Finishes() {
                   </div>
                 </div>
               </article>
+            </Reveal>
             );
           })}
         </div>
@@ -153,6 +160,30 @@ export default function Finishes() {
             <span aria-hidden="true">↗</span>
           </a>
         </div>
+        <div className="mt-12 flex flex-col gap-6 rounded-[2rem] border border-black/10 bg-white p-7 sm:p-9 lg:flex-row lg:items-center lg:justify-between">
+  <div>
+    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-400">
+      Plus de possibilités
+    </p>
+
+    <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em] text-neutral-950 sm:text-3xl">
+      Vous cherchez une couleur précise?
+    </h3>
+
+    <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+      Découvrez notre catalogue complet de couleurs, textures et finis
+      architecturaux.
+    </p>
+  </div>
+
+  <a
+    href="#contact"
+    className="inline-flex w-fit shrink-0 items-center gap-3 rounded-full bg-neutral-950 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-neutral-800"
+  >
+    Demander notre catalogue
+    <span aria-hidden="true">↗</span>
+  </a>
+</div>
       </div>
     </section>
   );
