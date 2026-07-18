@@ -4,6 +4,7 @@ import BeforeAfter from "@/components/BeforeAfter";
 import Services from "@/components/Services";
 import Finishes from "@/components/Finishes";
 import Projects from "@/components/Projects";
+import PopularFinishes from "@/components/PopularFinishes";
 
 import Process from "@/components/Process";
 import CTA from "@/components/CTA";
@@ -19,6 +20,7 @@ export default function Home() {
         <BeforeAfter />
         <Services />
         <Finishes />
+        <PopularFinishes />
         <Projects />
         
         <Process />

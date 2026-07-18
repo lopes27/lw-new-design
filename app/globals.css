@@ -321,3 +321,24 @@ body {
     animation: none;
   }
 }
+@keyframes msFadeSwap {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes msImageZoom {
+  0% {
+    transform: scale(1.04);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

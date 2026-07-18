@@ -60,13 +60,13 @@ export default function Projects() {
                 <video
                   src={project.video}
                   className="h-full w-full object-cover"
-                  muted={index === 0}
-                  autoPlay={index === 0}
-                  loop={index === 0}
+                  muted
+                  autoPlay
+                  loop
                   playsInline
                   controls
                   aria-label={`Vidéo avant/après — ${project.title}`}
-                  preload={index === 0 ? "metadata" : "none"}
+                  preload="metadata"
                 >
                   Votre navigateur ne prend pas en charge la lecture vidéo.
                 </video>
