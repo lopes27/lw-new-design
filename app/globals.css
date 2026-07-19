@@ -3,15 +3,14 @@
 :root {
   --background: #f6f4ef;
   --foreground: #171816;
-
   --ms-ink: #151714;
   --ms-ink-soft: #22241f;
   --ms-paper: #f6f4ef;
+  --ms-ivory: #faf9f6;
   --ms-stone: #e7e2da;
   --ms-warm-gray: #d5cfc5;
   --ms-bronze: #9a6b45;
   --ms-olive: #60675a;
-  --ms-ivory: #faf9f6;
 }
 
 @theme inline {
@@ -33,6 +32,21 @@ body {
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 :focus-visible {
   outline: 2px solid var(--ms-bronze);
   outline-offset: 3px;
@@ -44,25 +58,14 @@ body {
   color: #ffffff;
 }
 
-/* ============================================================
-   Fundo geral
-   ============================================================ */
-
+/* Fundo geral */
 .site-shell {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   background:
-    radial-gradient(
-      circle at 90% 12%,
-      rgba(154, 107, 69, 0.07),
-      transparent 24%
-    ),
-    radial-gradient(
-      circle at 8% 58%,
-      rgba(96, 103, 90, 0.05),
-      transparent 28%
-    ),
+    radial-gradient(circle at 90% 12%, rgba(154, 107, 69, 0.07), transparent 24%),
+    radial-gradient(circle at 8% 58%, rgba(96, 103, 90, 0.05), transparent 28%),
     linear-gradient(
       180deg,
       #faf9f6 0%,
@@ -73,34 +76,30 @@ body {
     );
 }
 
-/* Seções claras deixam o fundo geral aparecer */
 .site-flow > section:not(#projects):not(#contact) {
   background: transparent !important;
 }
 
-/* Separadores discretos somente entre seções claras */
 .site-flow
   > section:not(#projects):not(#contact)
   + section:not(#projects):not(#contact) {
   border-top: 1px solid rgba(73, 55, 39, 0.07);
 }
 
-/* ============================================================
-   Seções escuras
-   ============================================================ */
+.site-flow > section:not(#projects):not(#contact) p {
+  color: rgba(23, 24, 22, 0.7);
+}
 
+.site-flow > section:not(#projects):not(#contact) h2,
+.site-flow > section:not(#projects):not(#contact) h3 {
+  color: #171816;
+}
+
+/* Seções escuras */
 #projects {
   background:
-    radial-gradient(
-      circle at 82% 8%,
-      rgba(154, 107, 69, 0.13),
-      transparent 30%
-    ),
-    linear-gradient(
-      180deg,
-      #1d1f1b 0%,
-      #131512 100%
-    ) !important;
+    radial-gradient(circle at 82% 8%, rgba(154, 107, 69, 0.13), transparent 30%),
+    linear-gradient(180deg, #1d1f1b 0%, #131512 100%) !important;
   box-shadow:
     0 -24px 70px rgba(20, 22, 18, 0.07),
     0 24px 70px rgba(20, 22, 18, 0.07);
@@ -108,16 +107,8 @@ body {
 
 #contact {
   background:
-    radial-gradient(
-      circle at 12% 5%,
-      rgba(154, 107, 69, 0.12),
-      transparent 30%
-    ),
-    linear-gradient(
-      180deg,
-      #1b1d19 0%,
-      #111310 100%
-    ) !important;
+    radial-gradient(circle at 12% 5%, rgba(154, 107, 69, 0.12), transparent 30%),
+    linear-gradient(180deg, #1b1d19 0%, #111310 100%) !important;
 }
 
 .site-flow footer {
@@ -125,17 +116,9 @@ body {
   border-top-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* ============================================================
-   Classes antigas de fundo
-   ============================================================ */
-
 .ms-bg-dark {
   background:
-    radial-gradient(
-      circle at 15% 0%,
-      rgba(154, 107, 69, 0.12),
-      transparent 32%
-    ),
+    radial-gradient(circle at 15% 0%, rgba(164, 112, 75, 0.14), transparent 32%),
     var(--ms-ink);
 }
 
@@ -145,66 +128,72 @@ body {
   background: transparent;
 }
 
-/* ============================================================
-   Cores de texto
-   ============================================================ */
-
-/*
-  Aplica texto escuro somente nas seções claras comuns.
-  Services e Finishes ficam fora porque possuem textos sobre imagens.
-*/
-.site-flow
-  > section:not(#projects):not(#contact):not(#services):not(#finishes)
-  p {
-  color: rgba(23, 24, 22, 0.7);
+/* Sélection Maison Surface */
+#popular-finishes .process-image-content {
+  z-index: 20;
 }
 
-.site-flow
-  > section:not(#projects):not(#contact):not(#services):not(#finishes)
-  h2,
-.site-flow
-  > section:not(#projects):not(#contact):not(#services):not(#finishes)
-  h3 {
+#popular-finishes .process-image-content h2,
+#popular-finishes .process-image-content h3 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.38);
+}
+
+#popular-finishes .process-image-content p {
+  color: rgba(255, 255, 255, 0.82) !important;
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.32);
+}
+
+#popular-finishes .process-image-content .finish-eyebrow {
+  color: rgba(255, 255, 255, 0.68) !important;
+}
+
+#popular-finishes .process-image-content a {
+  color: #171816 !important;
+}
+
+#popular-finishes .process-image-content .text-white,
+#popular-finishes .process-image-content [class*="text-white"] {
+  color: #ffffff !important;
+}
+
+#popular-finishes button {
+  color: inherit;
+}
+
+#popular-finishes button span {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Processus */
+#process h2,
+#process h3 {
   color: #171816;
 }
 
-/*
-  Textos sobre imagens nos serviços.
-  O !important vence as regras utilitárias conflitantes.
-*/
-#services .relative h3,
-#services .relative p,
-#services .relative span {
+#process .process-scene h2,
+#process .process-scene h3,
+#process .process-scene p {
   color: #ffffff !important;
 }
 
-#services .relative p {
-  color: rgba(255, 255, 255, 0.72) !important;
+#process .process-scene {
+  transform-style: preserve-3d;
 }
 
-#services .relative > div > p:first-child {
-  color: rgba(255, 255, 255, 0.52) !important;
-}
-
-/*
-  Textos sobre imagens nos cards de acabamentos.
-  Não altera o título principal externo da seção.
-*/
-#finishes article h3,
-#finishes article p,
-#finishes article span,
-#finishes article a {
+/* Votre projet */
+#project-sizes article h3,
+#project-sizes article p,
+#project-sizes article span,
+#project-sizes article a {
   color: #ffffff !important;
 }
 
-#finishes article p {
-  color: rgba(255, 255, 255, 0.72) !important;
+#project-sizes article a:hover {
+  color: #ffffff !important;
 }
 
-/* ============================================================
-   Animações e microinterações
-   ============================================================ */
-
+/* Animações */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -292,10 +281,18 @@ body {
   }
 }
 
-/* ============================================================
-   Acessibilidade: reduzir movimento
-   ============================================================ */
+/* Mobile */
+@media (max-width: 767px) {
+  html {
+    scroll-padding-top: 76px;
+  }
 
+  .site-shell {
+    overflow-x: hidden;
+  }
+}
+
+/* Movimento reduzido */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -305,7 +302,9 @@ body {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 
   .reveal,
@@ -319,26 +318,5 @@ body {
   .ms-hero-image,
   .ms-marquee-track {
     animation: none;
-  }
-}
-@keyframes msFadeSwap {
-  0% {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes msImageZoom {
-  0% {
-    transform: scale(1.04);
-    opacity: 0.85;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
   }
 }

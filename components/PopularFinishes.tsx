@@ -239,8 +239,8 @@ export default function PopularFinishes() {
 
                 <div
                   key={`${active.id}-content`}
-                  className="content-reveal absolute inset-x-0 bottom-0 p-7 sm:p-10 lg:p-12"
-                >
+                 className="process-image-content absolute inset-x-0 bottom-0 p-7 sm:p-10 lg:p-12">
+                
                   <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/55">
                     {active.subtitle}
                   </p>

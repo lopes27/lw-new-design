@@ -1,10 +1,10 @@
-import Header from "@/components/Header";
+ import ProjectSizes from "@/components/ProjectSizes";
+ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import BeforeAfter from "@/components/BeforeAfter";
-import Services from "@/components/Services";
-import Finishes from "@/components/Finishes";
-import Projects from "@/components/Projects";
 import PopularFinishes from "@/components/PopularFinishes";
+import Projects from "@/components/Projects";
+// import Services from "@/components/Services";
 
 import Process from "@/components/Process";
 import CTA from "@/components/CTA";
@@ -16,17 +16,23 @@ export default function Home() {
       <Header />
       <Hero />
 
-      <div className="site-flow">
-        <BeforeAfter />
-        <Services />
-        <Finishes />
-        <PopularFinishes />
-        <Projects />
-        
-        <Process />
-        <CTA />
-        <Footer />
-      </div>
+<div className="site-flow">
+  <BeforeAfter />
+
+  <PopularFinishes />
+
+  <Projects />
+
+  <Process />
+
+  <ProjectSizes />
+
+  {/* <Services /> */}
+
+  <CTA />
+
+  <Footer />
+</div>
     </main>
   );
 }
