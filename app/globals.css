@@ -281,6 +281,95 @@ a {
   }
 }
 
+
+/* Sous-lignage animé des liens du menu */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Indicateur « défiler » du hero */
+.ms-scroll-line::before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: #ffffff;
+  animation: ms-scroll-drop 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes ms-scroll-drop {
+  0% {
+    transform: translateY(-100%);
+  }
+  55% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(102%);
+  }
+}
+
+
+/* Élément magnétique (boutons attirés par le curseur) */
+.ms-magnetic {
+  display: inline-flex;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* Barre de défilement personnalisée */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ms-ivory);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(23, 24, 22, 0.28);
+  border-radius: 999px;
+  border: 2px solid var(--ms-ivory);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(154, 107, 69, 0.65);
+}
+
+/* Marque d'eau géante du footer */
+.ms-watermark {
+  font-size: clamp(3rem, 12vw, 11rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  text-align: center;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.01) 90%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  overflow: hidden;
+}
+
 /* Mobile */
 @media (max-width: 767px) {
   html {
@@ -316,7 +405,13 @@ a {
   }
 
   .ms-hero-image,
-  .ms-marquee-track {
+  .ms-marquee-track,
+  .ms-scroll-line::before {
     animation: none;
+  }
+
+  .ms-magnetic {
+    transition: none;
+    transform: none !important;
   }
 }

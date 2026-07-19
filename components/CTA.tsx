@@ -87,6 +87,7 @@ export default function CTA() {
 
           </Reveal>
 
+          <Reveal delay={150}>
           <div className="rounded-[2rem] border border-white/10 bg-white p-7 text-neutral-950 sm:p-10 lg:p-12">
             {status === "success" ? (
               <div className="flex min-h-[560px] flex-col justify-center">
@@ -321,6 +322,7 @@ export default function CTA() {
               </form>
             )}
           </div>
+          </Reveal>
         </div>
       </div>
     </section>

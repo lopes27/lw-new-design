@@ -115,6 +115,10 @@ export default function Footer() {
           </div>
         </div>
 
+        <div aria-hidden="true" className="ms-watermark select-none pt-10">
+          Maison Surface
+        </div>
+
         <div className="flex flex-col gap-4 pt-7 text-xs text-white/35 sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Maison Surface. Tous droits réservés.</p>
 

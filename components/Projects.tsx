@@ -1,4 +1,6 @@
 import Reveal from "@/components/Reveal";
+import Magnetic from "@/components/Magnetic";
+import VideoCard from "@/components/VideoCard";
 
 const transformations = [
   {
@@ -57,19 +59,10 @@ export default function Projects() {
             >
             <article className="h-full">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 lg:max-h-[650px]">
-                <video
+                <VideoCard
                   src={project.video}
-                  className="h-full w-full object-cover"
-                  muted
-                  autoPlay
-                  loop
-                  playsInline
-                  controls
-                  aria-label={`Vidéo avant/après — ${project.title}`}
-                  preload="metadata"
-                >
-                  Votre navigateur ne prend pas en charge la lecture vidéo.
-                </video>
+                  label={`Vidéo avant/après — ${project.title}`}
+                />
 
                 <div className="pointer-events-none absolute left-5 top-5 flex items-center gap-2">
                   <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/35 text-xs font-medium backdrop-blur-md">
@@ -102,13 +95,15 @@ export default function Projects() {
             les besoins du client.
           </p>
 
-          <a
-            href="#contact"
-            className="inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 transition hover:-translate-y-0.5 hover:bg-neutral-200"
-          >
-            Transformer mon espace
-            <span aria-hidden="true">↗</span>
-          </a>
+          <Magnetic className="w-fit">
+            <a
+              href="#contact"
+              className="inline-flex w-fit items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-200"
+            >
+              Transformer mon espace
+              <span aria-hidden="true">↗</span>
+            </a>
+          </Magnetic>
         </div>
       </div>
     </section>

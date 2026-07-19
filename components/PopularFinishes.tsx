@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 type FinishItem = {
   id: string;
@@ -90,7 +91,7 @@ function DoorSwatch({
   active: boolean;
   onClick: () => void;
 }) {
-  const duration = "3000ms";
+  const duration = "1400ms";
 
   return (
     <button
@@ -108,10 +109,12 @@ function DoorSwatch({
         }`}
         style={{ perspective: "900px", transitionDuration: duration }}
       >
-        <img
+        <Image
           src={item.image}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover"
+          fill
+          sizes="150px"
+          className="object-cover"
         />
 
         <span
@@ -182,15 +185,64 @@ function DoorSwatch({
   );
 }
 
+const AUTOPLAY_MS = 5500;
+
 export default function PopularFinishes() {
   const [activeId, setActiveId] = useState(finishes[0].id);
+  const [hovered, setHovered] = useState(false);
+  const [inView, setInView] = useState(false);
+  const userInteracted = useRef(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   const active =
     finishes.find((finish) => finish.id === activeId) ?? finishes[0];
 
+  // Détecte quand la section est visible pour lancer la rotation.
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.35 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  // Rotation automatique des finitions jusqu'à la première
+  // interaction de l'utilisateur (pause au survol).
+  useEffect(() => {
+    if (!inView || hovered || userInteracted.current) return;
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setActiveId((current) => {
+        const index = finishes.findIndex((finish) => finish.id === current);
+        return finishes[(index + 1) % finishes.length].id;
+      });
+    }, AUTOPLAY_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [activeId, inView, hovered]);
+
+  const selectFinish = (id: string) => {
+    userInteracted.current = true;
+    setActiveId(id);
+  };
+
   return (
     <section
       id="popular-finishes"
+      ref={sectionRef}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       className="px-4 py-20 sm:px-6 lg:px-10 lg:py-28"
     >
       <div className="mx-auto max-w-[1500px]">
@@ -220,7 +272,7 @@ export default function PopularFinishes() {
                     key={finish.id}
                     item={finish}
                     active={finish.id === active.id}
-                    onClick={() => setActiveId(finish.id)}
+                    onClick={() => selectFinish(finish.id)}
                   />
                 ))}
               </div>
@@ -228,18 +280,22 @@ export default function PopularFinishes() {
 
             <div className="order-1 lg:order-2">
               <div className="relative min-h-[560px] overflow-hidden sm:min-h-[680px] lg:h-full">
-                <img
-                  key={active.id}
-                  src={active.image}
-                  alt={`Cuisine avec la finition ${active.name}`}
-                  className="kitchen-reveal absolute inset-0 h-full w-full object-cover"
-                />
+                <div key={active.id} className="kitchen-reveal absolute inset-0">
+                  <Image
+                    src={active.image}
+                    alt={`Cuisine avec la finition ${active.name}`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 1100px"
+                    className="object-cover"
+                  />
+                </div>
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/15 to-black/5" />
 
                 <div
                   key={`${active.id}-content`}
-                 className="process-image-content absolute inset-x-0 bottom-0 p-7 sm:p-10 lg:p-12">
+                 className="process-image-content content-reveal absolute inset-x-0 bottom-0 p-7 sm:p-10 lg:p-12"
+                >
                 
                   <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/55">
                     {active.subtitle}
@@ -269,11 +325,11 @@ export default function PopularFinishes() {
 
       <style jsx>{`
         .kitchen-reveal {
-          animation: kitchenReveal 3s cubic-bezier(0.22, 1, 0.36, 1);
+          animation: kitchenReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .content-reveal {
-          animation: contentReveal 3s cubic-bezier(0.22, 1, 0.36, 1);
+          animation: contentReveal 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         @keyframes kitchenReveal {

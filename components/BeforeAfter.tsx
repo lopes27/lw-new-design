@@ -105,11 +105,23 @@ export default function BeforeAfter() {
               />
             </div>
 
-            <div className="absolute left-6 top-6 rounded-full bg-black/75 px-5 py-2 text-sm font-semibold text-white backdrop-blur">
+            <div
+              className="absolute left-6 top-6 rounded-full bg-black/75 px-5 py-2 text-sm font-semibold text-white backdrop-blur transition-all duration-300"
+              style={{
+                opacity: 0.35 + (position / 100) * 0.65,
+                transform: `scale(${0.92 + (position / 100) * 0.08})`,
+              }}
+            >
               Avant
             </div>
 
-            <div className="absolute right-6 top-6 rounded-full bg-white px-5 py-2 text-sm font-semibold text-black">
+            <div
+              className="absolute right-6 top-6 rounded-full bg-white px-5 py-2 text-sm font-semibold text-black transition-all duration-300"
+              style={{
+                opacity: 0.35 + ((100 - position) / 100) * 0.65,
+                transform: `scale(${0.92 + ((100 - position) / 100) * 0.08})`,
+              }}
+            >
               Après
             </div>
 

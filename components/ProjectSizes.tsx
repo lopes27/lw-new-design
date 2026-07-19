@@ -1,11 +1,17 @@
- const projectSizes = [
+ import Image from "next/image";
+
+import CountUp from "@/components/CountUp";
+import Magnetic from "@/components/Magnetic";
+import Reveal from "@/components/Reveal";
+
+const projectSizes = [
   {
     number: "01",
     title: "Petite cuisine",
     description:
       "Une transformation ciblée pour les cuisines compactes et les espaces fonctionnels.",
     details: "Armoires, portes et panneaux",
-    price: "1 500 $",
+    price: 1500,
     image: "/images/services/service-kitchen.jpeg",
   },
   {
@@ -14,7 +20,7 @@
     description:
       "Une mise à jour complète pour moderniser l’espace sans remplacer toute la cuisine.",
     details: "Armoires, îlot et surfaces",
-    price: "2 000 $",
+    price: 2000,
     image: "/images/projects/project-contemporary-kitchen.png",
   },
   {
@@ -23,7 +29,7 @@
     description:
       "Une transformation personnalisée pour les cuisines plus vastes et les projets détaillés.",
     details: "Projet complet sur mesure",
-    price: "2 500 $",
+    price: 2500,
     image: "/images/hero-kitchen-luxury.png",
   },
 ];
@@ -53,15 +59,17 @@ export default function ProjectSizes() {
         </div>
 
         <div className="mt-12 grid overflow-hidden rounded-[2rem] bg-neutral-950 lg:grid-cols-3">
-          {projectSizes.map((project) => (
+          {projectSizes.map((project, index) => (
+            <Reveal key={project.number} delay={index * 130} className="h-full">
             <article
-              key={project.number}
-              className="group relative min-h-[590px] overflow-hidden border-white/10 lg:border-r lg:last:border-r-0"
+              className="group relative h-full min-h-[590px] overflow-hidden border-white/10 lg:border-r lg:last:border-r-0"
             >
-              <img
+              <Image
                 src={project.image}
                 alt={project.title}
-                className="absolute inset-0 h-full w-full object-cover transition duration-1000 ease-out group-hover:scale-[1.06]"
+                fill
+                sizes="(max-width: 1024px) 100vw, 500px"
+                className="object-cover transition duration-1000 ease-out group-hover:scale-[1.06]"
               />
 
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20 transition duration-500 group-hover:via-black/35" />
@@ -96,7 +104,7 @@ export default function ProjectSizes() {
                     </span>
 
                     <span className="mt-2 text-3xl font-semibold tracking-[-0.04em] !text-white">
-                      À partir de {project.price}
+                      À partir de <CountUp value={project.price} />{"\u00a0"}$
                     </span>
                   </div>
 
@@ -118,6 +126,7 @@ export default function ProjectSizes() {
                 </div>
               </div>
             </article>
+            </Reveal>
           ))}
         </div>
 
@@ -134,13 +143,15 @@ export default function ProjectSizes() {
             </p>
           </div>
 
-          <a
-            href="#contact"
-            className="inline-flex w-fit items-center gap-3 rounded-full bg-neutral-950 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-neutral-800"
-          >
-            Évaluer mon projet
-            <span aria-hidden="true">↗</span>
-          </a>
+          <Magnetic className="w-fit">
+            <a
+              href="#contact"
+              className="inline-flex w-fit items-center gap-3 rounded-full bg-neutral-950 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-neutral-800"
+            >
+              Évaluer mon projet
+              <span aria-hidden="true">↗</span>
+            </a>
+          </Magnetic>
         </div>
       </div>
     </section>

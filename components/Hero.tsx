@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import Magnetic from "@/components/Magnetic";
 
 const marqueeItems = [
   "Bois naturel",
@@ -10,17 +14,53 @@ const marqueeItems = [
 ];
 
 export default function Hero() {
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  // Parallaxe discrète : l'image de fond défile plus lentement
+  // que le contenu, ce qui donne de la profondeur au hero.
+  useEffect(() => {
+    const node = parallaxRef.current;
+    if (!node) return;
+
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (reduced) return;
+
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const y = window.scrollY;
+      if (y < window.innerHeight * 1.2) {
+        node.style.transform = `translate3d(0, ${y * 0.22}px, 0)`;
+      }
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
     <section className="relative flex min-h-screen flex-col justify-between overflow-hidden ms-bg-dark">
-      <div className="absolute inset-0 overflow-hidden">
-        <Image
-          src="/images/hero-kitchen-luxury.png"
-          alt="Cuisine transformée par Maison Surface"
-          fill
-          priority
-          sizes="100vw"
-          className="ms-hero-image object-cover object-center"
-        />
+      <div ref={parallaxRef} className="absolute inset-0 will-change-transform">
+        <div className="absolute inset-0 overflow-hidden">
+          <Image
+            src="/images/hero-kitchen-luxury.png"
+            alt="Cuisine transformée par Maison Surface"
+            fill
+            priority
+            sizes="100vw"
+            className="ms-hero-image object-cover object-center"
+          />
+        </div>
       </div>
 
       <div className="absolute inset-0 bg-black/15" />
@@ -56,22 +96,38 @@ export default function Hero() {
             className="ms-fade-up mt-10 flex flex-col gap-4 sm:flex-row"
             style={{ animationDelay: "640ms" }}
           >
-            <a
-              href="#contact"
-              className="inline-flex justify-center rounded-full bg-white px-7 py-4 text-sm font-semibold text-black transition duration-300 hover:-translate-y-0.5 hover:bg-neutral-200"
-            >
-              Demander une soumission
-            </a>
+            <Magnetic className="w-full sm:w-auto">
+              <a
+                href="#contact"
+                className="inline-flex w-full justify-center rounded-full bg-white px-7 py-4 text-sm font-semibold text-black transition duration-300 hover:bg-neutral-200 sm:w-auto"
+              >
+                Demander une soumission
+              </a>
+            </Magnetic>
 
-            <a
-              href="#projects"
-              className="inline-flex justify-center rounded-full border border-white/35 px-7 py-4 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-black"
-            >
-              Voir les transformations
-            </a>
+            <Magnetic className="w-full sm:w-auto">
+              <a
+                href="#projects"
+                className="inline-flex w-full justify-center rounded-full border border-white/35 px-7 py-4 text-sm font-semibold text-white transition duration-300 hover:bg-white hover:text-black sm:w-auto"
+              >
+                Voir les transformations
+              </a>
+            </Magnetic>
           </div>
         </div>
       </div>
+
+      <a
+        href="#before-after"
+        aria-label="Faire défiler vers la section suivante"
+        className="ms-fade-up ms-scroll-cue absolute bottom-24 right-8 z-10 hidden flex-col items-center gap-3 text-white/60 transition hover:text-white lg:flex"
+        style={{ animationDelay: "1000ms" }}
+      >
+        <span className="text-[10px] font-semibold uppercase tracking-[0.3em]">
+          Défiler
+        </span>
+        <span className="ms-scroll-line block h-12 w-px overflow-hidden bg-white/20" />
+      </a>
 
       <div
         className="ms-fade-up relative z-10 border-t border-white/10 bg-black/25 backdrop-blur-sm"
