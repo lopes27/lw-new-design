@@ -257,20 +257,164 @@ export default function CTA() {
                       Finition recherchée
                     </label>
 
-                    <select
-                      id="finish"
-                      name="finish"
-                      defaultValue=""
-                      className="mt-3 w-full rounded-2xl border border-neutral-300 bg-neutral-50 px-4 py-4 outline-none transition focus:border-neutral-950 focus:bg-white"
-                    >
-                      <option value="">Je ne sais pas encore</option>
-                      <option value="Bois naturel">Bois naturel</option>
-                      <option value="Marbre">Marbre</option>
-                      <option value="Mat">Mat</option>
-                      <option value="Béton">Béton</option>
-                      <option value="Cachemire">Cachemire</option>
-                      <option value="Brillant">Brillant</option>
-                    </select>
+                   <div className="form-field form-field-full">
+  <label htmlFor="finish">
+    Finition recherchée
+  </label>
+
+ <select
+  id="finish"
+  name="finish"
+  defaultValue=""
+  className="mt-3 w-full rounded-2xl border border-neutral-300 bg-neutral-50 px-4 py-4 outline-none transition focus:border-neutral-950"
+  required
+>
+    <option value="">Sélectionnez une finition</option>
+    <option value="Je ne sais pas encore">
+      Je ne sais pas encore
+    </option>
+
+    <optgroup label="Grains de bois">
+      <option value="WMK-005 — Bois espresso">
+        WMK-005 — Bois espresso
+      </option>
+
+      <option value="WMK-006 — Bois sable du crépuscule">
+        WMK-006 — Bois sable du crépuscule
+      </option>
+
+      <option value="WMK-008 — Bois caramel salé">
+        WMK-008 — Bois caramel salé
+      </option>
+
+      <option value="WMK-009 — Bois cœur d’amande">
+        WMK-009 — Bois cœur d’amande
+      </option>
+
+      <option value="WMK-013 — Bois blond scandinave">
+        WMK-013 — Bois blond scandinave
+      </option>
+
+      <option value="WMK-019 — Bois orge émondé">
+        WMK-019 — Bois orge émondé
+      </option>
+
+      <option value="WMK-020 — Bois de rose ombré">
+        WMK-020 — Bois de rose ombré
+      </option>
+
+      <option value="WMK-022 — Bois nordique">
+        WMK-022 — Bois nordique
+      </option>
+
+      <option value="WMK-024 — Bois de plage">
+        WMK-024 — Bois de plage
+      </option>
+
+      <option value="WMK-025 — Chêne fumé">
+        WMK-025 — Chêne fumé
+      </option>
+
+      <option value="WMK-026 — Écorce de lune">
+        WMK-026 — Écorce de lune
+      </option>
+
+      <option value="WMK-027 — Chêne sablé">
+        WMK-027 — Chêne sablé
+      </option>
+
+      <option value="WMK-041 — Bois blanc nuage">
+        WMK-041 — Bois blanc nuage
+      </option>
+
+      <option value="WMK-042 — Bois taupe">
+        WMK-042 — Bois taupe
+      </option>
+
+      <option value="WMK-043 — Bois noir">
+        WMK-043 — Bois noir
+      </option>
+
+      <option value="WMK-044 — Bois blanc coquille d’œuf">
+        WMK-044 — Bois blanc coquille d’œuf
+      </option>
+    </optgroup>
+
+    <optgroup label="Satinés et mats">
+      <option value="WMK-049 — Champagne satiné">
+        WMK-049 — Champagne satiné
+      </option>
+
+      <option value="WMK-050 — Argent satiné">
+        WMK-050 — Argent satiné
+      </option>
+
+      <option value="WMK-051 — Nova noir satiné">
+        WMK-051 — Nova noir satiné
+      </option>
+
+      <option value="WMK-052 — Blanc mat satiné">
+        WMK-052 — Blanc mat satiné
+      </option>
+
+      <option value="WMK-053 — Noir anthracite">
+        WMK-053 — Noir anthracite
+      </option>
+
+      <option value="WMK-054 — Blanc crémeux">
+        WMK-054 — Blanc crémeux
+      </option>
+
+      <option value="WMK-055 — Brise minérale">
+        WMK-055 — Brise minérale
+      </option>
+
+      <option value="WMK-085 — Ultra blanc mat">
+        WMK-085 — Ultra blanc mat
+      </option>
+    </optgroup>
+
+    <optgroup label="Pierre et minéral">
+      <option value="WMK-045-B — Béton">
+        WMK-045-B — Béton
+      </option>
+
+      <option value="WMK-057 — Gris bruine matinale">
+        WMK-057 — Gris bruine matinale
+      </option>
+
+      <option value="WMK-058 — Gris ardoise">
+        WMK-058 — Gris ardoise
+      </option>
+
+      <option value="WMK-060 — Granite">
+        WMK-060 — Granite
+      </option>
+
+      <option value="WMK-061 — Marbre blanc">
+        WMK-061 — Marbre blanc
+      </option>
+
+      <option value="WMK-065 — Lin">
+        WMK-065 — Lin
+      </option>
+    </optgroup>
+
+    <optgroup label="Lustrés">
+      <option value="WMK-059 — Vert sauge">
+        WMK-059 — Vert sauge
+      </option>
+
+      <option value="WMK-071 — Rouge lustré">
+        WMK-071 — Rouge lustré
+      </option>
+
+      <option value="WMK-095 — Blanc pur super lustré">
+        WMK-095 — Blanc pur super lustré
+      </option>
+    </optgroup>
+  </select>
+</div>
                   </div>
 
                   <div className="sm:col-span-2">
