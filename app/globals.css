@@ -415,3 +415,112 @@ a {
     transform: none !important;
   }
 }
+
+/* ===== Nuancier (catalogue de finis) ===== */
+
+        .nuancier-overlay {
+          animation: overlayIn 300ms ease-out both;
+        }
+        .nuancier-panel {
+          animation: panelIn 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        @keyframes overlayIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes panelIn {
+          from { opacity: 0; transform: translateY(24px) scale(0.985); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .swatch-card {
+          opacity: 0;
+          animation: swatchIn 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        @keyframes swatchIn {
+          from { opacity: 0; transform: translateY(22px) scale(0.96); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Scène 3D : les battants s'ouvrent en profondeur */
+        .swatch-stage {
+          perspective: 1100px;
+          cursor: pointer;
+          background: #f0eded;
+        }
+
+        /* Les couches internes ne captent jamais le clic : il va au bouton */
+        .swatch-stage > span {
+          pointer-events: none;
+        }
+
+        /* Texte révélé : léger fondu/zoom une fois les portes ouvertes */
+        .swatch-reveal {
+          z-index: 1;
+          opacity: 0;
+          transform: scale(0.9);
+          transition:
+            opacity 400ms ease 120ms,
+            transform 500ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
+        }
+        .swatch-code {
+          z-index: 3;
+        }
+        .is-open .swatch-reveal {
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        /* Battants gauche/droite (image de fond, une moitié chacun) */
+        .swatch-leaf {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 50%;
+          z-index: 2;
+          background-repeat: no-repeat;
+          backface-visibility: hidden;
+          transition: transform 720ms cubic-bezier(0.34, 1.2, 0.4, 1);
+          will-change: transform;
+        }
+        .swatch-leaf-left {
+          left: 0;
+          transform-origin: left center;
+          box-shadow: inset -8px 0 14px -8px rgba(0, 0, 0, 0.35);
+        }
+        .swatch-leaf-right {
+          right: 0;
+          transform-origin: right center;
+          box-shadow: inset 8px 0 14px -8px rgba(0, 0, 0, 0.35);
+        }
+
+        .is-open .swatch-leaf-left {
+          transform: rotateY(-105deg);
+        }
+        .is-open .swatch-leaf-right {
+          transform: rotateY(105deg);
+        }
+
+        /* Le badge code de coin disparaît quand les portes s'ouvrent */
+        .swatch-code {
+          transition: opacity 300ms ease;
+        }
+        .is-open .swatch-code {
+          opacity: 0;
+        }
+
+        /* Mouvement réduit : l'ouverture reste fonctionnelle mais sans
+           transition (bascule instantanée), pour respecter la préférence. */
+        @media (prefers-reduced-motion: reduce) {
+          .nuancier-overlay,
+          .nuancier-panel,
+          .swatch-card {
+            animation: none;
+            opacity: 1;
+          }
+          .swatch-leaf,
+          .swatch-reveal,
+          .swatch-code {
+            transition: none;
+          }
+        }

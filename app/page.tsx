@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import ProjectSizes from "@/components/ProjectSizes";
 import Hero from "@/components/Hero";
 import BeforeAfter from "@/components/BeforeAfter";
+import Nuancier from "@/components/Nuancier";
 import PopularFinishes from "@/components/PopularFinishes";
 import Projects from "@/components/Projects";
 // import Services from "@/components/Services";
@@ -22,6 +23,8 @@ export default function Home() {
   <BeforeAfter />
 
   <PopularFinishes />
+
+  <Nuancier />
 
   <Projects />
 
