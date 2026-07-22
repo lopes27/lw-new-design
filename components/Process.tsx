@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type TouchEvent as ReactTouchEvent,
+} from "react";
 
 const AUTOPLAY_MS = 6500;
 
@@ -48,6 +54,31 @@ export default function Process() {
     },
     [activeIndex]
   );
+
+  const step = useCallback((delta: number) => {
+    setDirection(delta);
+    setActiveIndex((i) => (i + delta + steps.length) % steps.length);
+  }, []);
+
+  // Balayage tactile : sur mobile, on change d'étape en glissant sur l'image.
+  const touchX = useRef(0);
+  const touchY = useRef(0);
+
+  const onTouchStart = (event: ReactTouchEvent<HTMLDivElement>) => {
+    touchX.current = event.touches[0].clientX;
+    touchY.current = event.touches[0].clientY;
+    setPaused(true);
+  };
+
+  const onTouchEnd = (event: ReactTouchEvent<HTMLDivElement>) => {
+    const dx = event.changedTouches[0].clientX - touchX.current;
+    const dy = event.changedTouches[0].clientY - touchY.current;
+    setPaused(false);
+
+    // On ignore les gestes verticaux : c'est un défilement de page.
+    if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy)) return;
+    step(dx < 0 ? 1 : -1);
+  };
 
   // Révèle la section au scroll
   useEffect(() => {
@@ -119,7 +150,46 @@ export default function Process() {
           onFocusCapture={() => setPaused(true)}
           onBlurCapture={() => setPaused(false)}
         >
-          <div className="reveal reveal-4 rounded-[2rem] bg-neutral-950 p-4">
+          {/* Mobile : onglets compacts, juste au-dessus de l'image */}
+          <div className="lg:hidden">
+            <div className="grid grid-cols-3 gap-2 rounded-[1.25rem] bg-neutral-950 p-2">
+              {steps.map((item, index) => {
+                const selected = index === activeIndex;
+
+                return (
+                  <button
+                    key={item.number}
+                    type="button"
+                    onClick={() => goTo(index)}
+                    aria-pressed={selected}
+                    className={`relative overflow-hidden rounded-[0.9rem] px-2 py-3 text-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      selected
+                        ? "bg-white text-neutral-950"
+                        : "bg-white/[0.05] text-white/70"
+                    }`}
+                  >
+                    <span className="block text-[10px] font-semibold tracking-[0.14em]">
+                      {item.number}
+                    </span>
+                    <span className="mt-0.5 block text-[13px] font-medium leading-tight">
+                      {item.title}
+                    </span>
+
+                    {selected && (
+                      <span
+                        key={`tab-${activeIndex}-${paused}`}
+                        className={`process-progress absolute inset-x-0 bottom-0 h-[3px] origin-left bg-neutral-950/70 ${
+                          paused ? "is-paused" : ""
+                        }`}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="reveal reveal-4 hidden rounded-[2rem] bg-neutral-950 p-4 lg:block">
             <div className="grid gap-3">
               {steps.map((step, index) => {
                 const selected = index === activeIndex;
@@ -195,7 +265,11 @@ export default function Process() {
             </a>
           </div>
 
-          <div className="process-stage reveal reveal-5 relative min-h-[620px] overflow-hidden rounded-[2rem] border border-black/10 bg-neutral-950">
+          <div
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+            className="process-stage reveal reveal-5 relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-black/10 bg-neutral-950 sm:aspect-[16/11] lg:aspect-auto lg:min-h-[620px]"
+          >
             {/* toutes les images restent montées : fondu enchaîné sans rechargement */}
             {steps.map((step, index) => {
               const isActive = index === activeIndex;
@@ -227,28 +301,28 @@ export default function Process() {
             <div className="process-orb process-orb-two" />
             <div className="process-sheen" key={`sheen-${activeIndex}`} />
 
-            <div className="absolute inset-x-0 bottom-0 z-20 p-7 text-white sm:p-10 lg:p-12">
+            <div className="absolute inset-x-0 bottom-0 z-20 p-5 text-white sm:p-10 lg:p-12">
               <div key={active.number} className="process-copy">
-                <p className="copy-line copy-1 text-xs font-semibold uppercase tracking-[0.28em] !text-white/55">
+                <p className="copy-line copy-1 text-[10px] font-semibold uppercase tracking-[0.28em] !text-white/55 sm:text-xs">
                   {active.short}
                 </p>
 
-                <h3 className="copy-line copy-2 mt-4 text-4xl font-medium tracking-[-0.05em] !text-white sm:text-5xl lg:text-6xl">
+                <h3 className="copy-line copy-2 mt-2.5 text-3xl font-medium tracking-[-0.05em] !text-white sm:mt-4 sm:text-5xl lg:text-6xl">
                   {active.title}
                 </h3>
 
-                <p className="copy-line copy-3 mt-5 max-w-2xl text-base leading-7 !text-white/72">
+                <p className="copy-line copy-3 mt-3 max-w-2xl text-sm leading-6 !text-white/72 sm:mt-5 sm:text-base sm:leading-7">
                   {active.description}
                 </p>
               </div>
 
-              <div className="mt-8 flex gap-3">
-                {steps.map((step, index) => (
+              <div className="mt-5 flex items-center gap-3 sm:mt-8">
+                {steps.map((item, index) => (
                   <button
-                    key={step.number}
+                    key={item.number}
                     type="button"
                     onClick={() => goTo(index)}
-                    aria-label={`Afficher l’étape ${step.number}`}
+                    aria-label={`Afficher l’étape ${item.number}`}
                     className={`h-1.5 overflow-hidden rounded-full transition-all duration-700 ${
                       index === activeIndex
                         ? "w-16 bg-white/25"
@@ -265,10 +339,22 @@ export default function Process() {
                     )}
                   </button>
                 ))}
+
+                <span className="ml-auto text-[10px] font-medium text-white/45 lg:hidden">
+                  Glissez ←→
+                </span>
               </div>
             </div>
           </div>
         </div>
+
+        <a
+          href="#contact"
+          className="mt-4 inline-flex w-full items-center justify-center gap-3 rounded-full bg-neutral-950 px-6 py-4 text-sm font-semibold text-white transition hover:bg-neutral-800 lg:hidden"
+        >
+          Commencer mon projet
+          <span aria-hidden="true">↗</span>
+        </a>
 
         <div className="reveal reveal-6 mt-6 rounded-[1.5rem] border border-black/10 bg-white/60 px-6 py-5 text-sm leading-6 text-neutral-600 backdrop-blur-sm">
           Quelques photos suffisent pour commencer votre évaluation gratuite.
